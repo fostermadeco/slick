@@ -1191,6 +1191,22 @@
             }
         }
 
+        if (_.options.variableWidth === true && targetLeft < 0) {
+            var elTotalWidth = 0;
+            this.$slides.each(function () {
+                elTotalWidth += $(this).outerWidth();
+            });
+
+            var endOfSlider = window.innerWidth - elTotalWidth;
+            if (_.options.variableWidthPadding) {
+                endOfSlider -= Number(_.options.variableWidthPadding);
+            }
+
+            if (targetLeft < endOfSlider) {
+                targetLeft = endOfSlider;
+            }
+        }
+
         return targetLeft;
 
     };
